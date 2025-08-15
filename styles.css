@@ -1,57 +1,215 @@
-body, html {
+/* =========================
+   1. Font imports
+   ========================= */
+
+/* ----- ClearSans ----- */
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-BoldItalic.ttf') format('truetype'); font-weight: 700; font-style: italic; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Italic.ttf') format('truetype'); font-weight: 400; font-style: italic; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-MediumItalic.ttf') format('truetype'); font-weight: 500; font-style: italic; }
+@font-face { font-family: 'ClearSans'; src: url('fonts/ClearSans-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
+
+/* ----- Geologica ----- */
+@font-face { font-family: 'Geologica'; src: url('fonts/Geologica-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Geologica'; src: url('fonts/Geologica-Light.ttf') format('truetype'); font-weight: 300; font-style: normal; }
+@font-face { font-family: 'Geologica'; src: url('fonts/Geologica-Medium.ttf') format('truetype'); font-weight: 500; font-style: normal; }
+@font-face { font-family: 'Geologica'; src: url('fonts/Geologica-SemiBold.ttf') format('truetype'); font-weight: 600; font-style: normal; }
+@font-face { font-family: 'Geologica'; src: url('fonts/Geologica-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
+
+/* ----- Geologica Auto ExtraBold ----- */
+@font-face { font-family: 'Geologica Auto'; src: url('fonts/Geologica_Auto-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+
+/* ----- Geologica Cursive ----- */
+@font-face { font-family: 'Geologica Cursive'; src: url('fonts/Geologica_Cursive-Bold.ttf') format('truetype'); font-weight: 700; font-style: normal; }
+@font-face { font-family: 'Geologica Cursive'; src: url('fonts/Geologica_Cursive-ExtraBold.ttf') format('truetype'); font-weight: 800; font-style: normal; }
+@font-face { font-family: 'Geologica Cursive'; src: url('fonts/Geologica_Cursive-Thin.ttf') format('truetype'); font-weight: 100; font-style: normal; }
+
+/* =========================
+   2. Base styles
+   ========================= */
+html, body {
+  max-width: 1360px;
   margin: 0;
-  font-family: sans-serif;
+  overscroll-behavior-y: auto;
+  font-family: 'ClearSans', sans-serif;
 }
 
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+sup {
+  vertical-align: top;
+  position: relative;
+  font-size: 0.6em;
+  top: 0.5em;
+  line-height: 0;
+}
+
+/* =========================
+   3. Header
+   ========================= */
+.main-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  background: white;
+  z-index: 1000;
+  padding: 30px 40px 10px;
+  font-family: 'Geologica', sans-serif;
+  font-weight: 400;
+}
+
+.top-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.top-nav a:hover {
+  text-decoration: underline;
+}
+
+.page-title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  color: black;
+}
+
+/* =========================
+   4. Chapter navigation
+   ========================= */
+.chapter-link { color: rgb(211, 211, 211); }
+.chapter-link.active { color: #0066ff; }
+
+.chapter-wrapper {
+  scroll-snap-align: start;
+  height: auto;
+}
+
+/* =========================
+   5. Layout columns
+   ========================= */
 .container {
   display: flex;
   flex-direction: row;
-  height: 90vh;
+  position: relative;
 }
 
-.visual-column {
-  flex: 1;
+.visual-column,
+.visual-column-2 {
   position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: hidden;
+  top: 180px;
+  height: 80vh;
 }
 
+.visual-column { flex: 2; }
+.visual-column-2 { flex: 3; }
+
+.content-column,
+.content-column-2 {
+  font-size: 16px;
+  flex: 1.5;
+  padding-top: 180px;
+  padding-left: 30px;
+  overflow: visible;
+  height: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.content-column::-webkit-scrollbar,
+.content-column-2::-webkit-scrollbar { display: none; }
+
+.notes-column,
+.notes-column-2 {
+  position: sticky;
+  top: 180px;
+  height: 80vh;
+  font-size: 10px;
+  line-height: 1.4;
+  overflow-y: auto;
+  font-family: 'ClearSans', sans-serif;
+}
+.notes-column { flex: 1; padding: 0 50px 0 40px; }
+.notes-column-2 { flex: 0; padding: 0 50px 0 40px; }
+
+/* =========================
+   6. Scroll steps
+   ========================= */
+.step {
+  margin-bottom: 500px;
+  line-height: 1.5;
+}
+
+.step.last-step {
+  position: sticky;
+  top: 180px;
+  z-index: 2;
+  background: white;
+  margin-bottom: 220px;
+}
+
+/* =========================
+   7. Figures and captions
+   ========================= */
 .image-stack {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
-.figure {
+.figure-container {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   opacity: 0;
   transition: opacity 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+.figure-container[data-step="0"] { opacity: 1; }
+
+.figure-container img.figure {
+  max-width: 90%;
+  max-height: 80%;
+  object-fit: contain;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.content-column {
-  flex: 1;
-  padding: 50px;
-  overflow-y: auto;
-}
-
-.step {
-  margin-bottom: 100vh;
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.notes-column {
-  flex: 0.5;
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  padding: 20px;
+.caption {
+  margin-top: 5px;
+  padding: 10px 15px;
   font-size: 14px;
-  line-height: 1.4;
-  overflow-y: auto;
+  font-style: italic;
+  max-width: 90%;
+  color: #444;
+  text-align: left;
 }
 
+#clickable-bh-chapter1 {
+  max-height: 85%!important;
+  max-width: 85%!important;
+}
+
+/* =========================
+   8. Fullscreen images
+   ========================= */
+.full-screen-image { z-index: 5; max-width: 100%; }
+#full-img { max-height: 100%; max-width: 100%; padding-bottom: 200px; }
+
+/* =========================
+   9. Special spacing
+   ========================= */
+#chapter-intro { padding-bottom: 400px; }

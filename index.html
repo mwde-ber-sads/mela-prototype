@@ -1,150 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="styles.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Peace Cartography Scroll</title>
-  <style>
-    body, html {
-      margin: 0;
-      font-family: sans-serif;
-    }
 
-    .container {
-  display: flex;
-  flex-direction: row;
-  height: 80vh;
-  padding-top: 120px; 
-}
-
-
-    .visual-column {
-      flex: 2;
-      position: sticky;
-      top: 0;
-      height: 80vh;
-      overflow: hidden;
-    }
-
-    .image-stack {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    .figure-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .figure-container img.figure {
-      max-width: 90%;
-      max-height: 80%;
-      object-fit: contain;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .caption {
-      margin-top: 5px;
-      background: rgba(255, 255, 255, 0.9);
-      padding: 10px 15px;
-      font-size: 14px;
-      font-style: italic;
-      max-width: 90%;
-      color:#444;
-      text-align: left;
-    }
-
-    .content-column {
-      flex: 1.25;
-      padding: 10px;
-      overflow-y: scroll;
-     scrollbar-width: none;        /* Firefox */
-     -ms-overflow-style: none;     /* IE/Edge */
-    }
-
-.content-column::-webkit-scrollbar {
-  display: none;                /* Chrome, Safari */
-}
-
-    .step {
-      margin-bottom: 100vh;
-      font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .notes-column {
-      flex: 0.35;
-      position: sticky;
-      top: 0;
-      height: 80vh;
-      padding: 20px;
-      font-size: 14px;
-      line-height: 1.4;
-      overflow-y: auto;
-    }
-
-    .main-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  z-index: 1000;
-  padding: 20px 40px 10px;
-}
-
-.top-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-}
-
-.top-nav a {
-  text-decoration: none;
-}
-
-.top-nav a:hover {
-  text-decoration: underline;
-}
-
-.page-title {
-  margin-top: 15px;
-  font-size: 24px;
-  font-weight: 600;
-  color: black;
-  
-}
-
-.chapter-link {
-  color: rgb(211, 211, 211);
-}
-
-#chapter-link-active {
-  color: rgb(0, 0, 0);
-}
-
-  </style>
 </head>
 <body>
 <header class="main-header">
   <nav class="top-nav">
-    <a href="#" id="chapter-link-active" data-chapter="intro">INTRODUCTION</a>
+    <a href="#" class="chapter-link" data-chapter="intro">INTRODUCTION</a>
     <a href="#" class="chapter-link" data-chapter="chapter1">I 51:49 PRAGMATIC ABSURDITIES OF DAYTON</a>
     <a href="#" class="chapter-link" data-chapter="chapter2">II FOLLOW THE LINE</a>
     <a href="#" class="chapter-link" data-chapter="chapter3">III ENVIRONMENTAL LEGACIES OF PEACEMAKING</a>
@@ -152,9 +18,17 @@
   <h1 class="page-title">‘Peace Cartography’ in Bosnia-Herzegovina</h1>
 </header>
 
-  <div class="container">
-    <div class="visual-column">
+
+
+<section class="chapter-wrapper" id="chapter-intro">
+<div class="container">
+
+<div class="visual-column">
       <div class="image-stack">
+        <div class="figure-container" data-step="0">
+          <img src="figures/figure-0.jpg" class="figure" />
+          <div class="caption"></div>
+        </div>
         <div class="figure-container" data-step="1">
           <img src="figures/figure-1.jpg" class="figure" />
           <div class="caption"></div>
@@ -167,74 +41,97 @@
           <img src="figures/figure-3.jpg" class="figure" />
           <div class="caption"></div>
         </div>
-        <div class="figure-container" data-step="4">
-          <img src="figures/figure-4.jpg" class="figure" />
-          <div class="caption"></div>
-        </div>
-        <div class="figure-container" data-step="5">
-          <img src="figures/figure-5.jpg" class="figure" />
-          <div class="caption"></div>
-        </div>
       </div>
+    </div>
+    <div class="content-column">
+      
+      <div id="scrolly">
+        
+        <div class="chapter" id="intro">
+        <div class="step" data-step="0">The war in BiH started in 1992 after this country proclaimed independence from Yugoslavia and the ensuing aggression by the Yugoslav National Army under the control of Serbian ethno-nationalist elites. This led to a series of violent conflicts and war that was qualified as map-driven. Maps were continuously used by conflict parties and international negotiators, to claim territory, to document military control, or to divide the country on paper. Mapmaking also preceded the conflict as different parties<sup>1</sup> produced competing visions of ethnic distribution in former Yugoslavia to indicate their desired territorial claims.       <p>The multiethnic complexity of the country was somewhat evident in the official 1991 ethnic map, so-called ‘leopard skin’ map, which visualised the demographic composition in a more contextualised, detailed and complex way.</div>
+        <div class="step" data-step="1">The maps created afterwards, during the war and in the postwar period, increasingly diminished the representation of multiethnicity (e.g. a high percentage of mixed marriages and families in urban areas) by visualising three majority ethnicities as homogenised groups with the choropleth method<sup>2</sup>.
+</div>
+        <div class="step" data-step="2">During the peace negotiations in Dayton in 1995, the US negotiating team introduced a new software for delineating terrain, called Powerscene. It was supposed to produce a precise three-dimensional terrain simulation which would help draw territorial division lines in high detail. In retrospect, numerous US participants spoke with enthusiasm of this software and its supposedly objective approach to visualising territory<sup>3</sup>. Its 3D simulation was so detailed that the participants could even see the streets and houses in which their families lived. But this visualisation also affected how participants saw land as empty, worthless or valuable, leading to specific decisions on how to divide it (more in Chapter 1).</div>
+        <div class="step last-step" data-step="3">In the fall of 1995, peace in BiH was finally brokered in the city of Dayton, Ohio with the Dayton Peace Agreement (DPA). The Inter-Entity Boundary Line (IEBL, entitetska linija) was drawn to divide the country by establishing two entities, the “Federation of Bosnia and Herzegovina” (FBiH) and the “Republika Srpska” (RS). The drawing of the IEBL followed ethnic and military criteria. The imposition of this criteria over complex spatial reality of BiH meant the line would need to cut through cities, villages, streets–in some areas, straight through the houses of people. But it also cut through landscapes, forests, mountains, rivers, lakes and other uninhabited land, often described as worthless during the negotiations (more in Chapter 2). </div>
+         
+             </div></div>
+
     </div>
 
-    <div class="content-column">
-      <div id="scrolly">
-        <div class="step" data-step="0">
-          The war in BiH started in 1992 after this country proclaimed independence from Yugoslavia and the ensuing aggression by the Yugoslav National Army under the control of Serbian ethno-nationalist elites. This led to a series of violent conflicts and war that was qualified as map-driven. Maps were continuously used by conflict parties and international negotiators, to claim territory, to document military control, or to divide the country on paper. Mapmaking also preceded the conflict as different parties produced competing visions of ethnic distribution in former Yugoslavia to indicate their desired territorial claims.
-        </div>
-        <div class="step" data-step="1">The multiethnic complexity of the country was somewhat evident in the official 1991 ethnic map, so-called ‘leopard skin’ map, which visualised the demographic composition in a more contextualised, detailed and complex way.</div>
-        <div class="step" data-step="2">The maps created afterwards, during the war and in the postwar period, increasingly diminished the representation of multiethnicity (e.g. a high percentage of mixed marriages and families in urban areas) by visualising three majority ethnicities as homogenised groups with choropleth method.</div>
-        <div class="step" data-step="3">During the peace negotiations in Dayton in 1995, the US negotiating team introduced a new software for delineating terrain, called Powerscene. It was supposed to produce a precise three-dimensional terrain simulation which would help draw territorial division lines in high detail. In retrospect, numerous US participants spoke with enthusiasm of this software and its supposedly objective approach to visualising territory. Its 3D simulation was so detailed that the participants could even see the streets and houses in which their families lived. But this visualisation also affected how participants saw land as empty, worthless or valuable, leading to specific decisions on how to divide it (more in Chapter 1).</div>
-        <div class="step" data-step="4">In the fall of 1995, peace in BiH was finally brokered in the city of Dayton, Ohio with the Dayton Peace Agreement (DPA). The Inter-Entity Boundary Line (IEBL, entitetska linija) was drawn to divide the country by establishing two entities, the “Federation of Bosnia and Herzegovina” (FBiH) and the “Republika Srpska” (RS). The drawing of the IEBL followed ethnic and military criteria. The imposition of this criteria over complex spatial reality of BiH meant the line would need to cut through cities, villages, streets–in some areas, straight through the houses of people. But it also cut through landscapes, forests, mountains, rivers, lakes and other uninhabited land, often described as worthless during the negotiations (more in Chapter 2). </div>
-        
-      </div>
-    </div>
 
     <div class="notes-column">
-      <div class="footnotes">
-        <p><sup>1</sup> The placement of footnotes or other content in this part</p>
-        <p></p>
+      <div class="footnote">
       </div>
     </div>
-  </div>
+      </div>
+    </section>
+  
+
+<section class="chapter-wrapper" id="chapter-1">
+  <div class="container">
+
+<div class="visual-column">
+      <div class="image-stack">
+        <div class="figure-container" data-step="4">
+        </div>
+      </div>
+    </div>
+    <div class="content-column">
+      
+      <div id="scrolly">
+        
+        <div class="chapter" id="intro">
+        <div class="step" data-step="4">The peace proposal maps rendered the land in BiH divisible by visualising it as ethnic ownership or military terrain. The use of maps shaped how participants in the negotiations saw swaths of inhabited land as important for being owned by specific ethnic groups, while describing uninhabited areas as empty or worthless. At one point, they agreed to the ethnic division of land in the ratio of 51% for the Bosniak and Bosnian-Croat part and 49% for the Bosnian Serb part. This ratio of 51:49 <sup>4</sup> was formalised in the negotiations led by the Contact Group in 1994, and it provided a calculative goal that would moderate negotiations and motivate the exchange of occupied land. What followed across negotiations, and up to the Dayton Peace Accords, was a struggle to meet this ratio as the situation on the ground was continuously changing through military action. In scoping the land to find percentages and reach the 51:49 ratio, paper maps and Powerscene visualisation affected how parts of the land were exchanged and divided in relation to their perceived value. 
+</div>
+         </div></div>
+
+    </div>
+    <div class="notes-column">
+      <div class="footnote">
+      </div>
+    </div></div>
+    </section>
+    
+
+<section class="full-screen-image">
+       <img src="figures/figure-5.jpg" id="full-img" />
+    </section>
+  
+
+<section class="chapter-wrapper" id="chapter-1">
+  <div class="container">
+
+<div class="visual-column-2">
+      <div class="image-stack">
+        <div class="figure-container" id="clickable-bh-chapter1" data-step="5">
+          <img src="figures/figure-6.jpg" class="figure"/>
+          <div class="caption"></div>
+        </div>
+    
+      </div>
+    </div>
+    <div class="content-column-2">
+      
+      <div id="scrolly">
+        
+        <div class="chapter" id="intro">
+        <div class="step last-step" data-step="5">This map reveals some of the absurdities and abstractions of land which emerged during the final rounds of negotiations in Dayton. These statements exemplify the US-centric narrative of exchanging land with the help of maps and terrain visualisation. They are also reflective of the pragmatic approach to dividing land with ad hoc and simplified solutions in searching for a ‘cartographic fix’ (Toal and Dahlman 2002) that would resolve the war in BiH. Cartographic vision and technology contributed to specific ways of qualifying land - at times as ‘something’, ‘anything’ or ‘nothing’, at others as ‘worthless’, ‘theoretical’, ‘egg’- shaped, or a ‘croissant’. <p> These qualifications abstracted land in diplomatic circles as they strived to find a pragmatic and viable solution to dividing the territory of BiH, neglecting its complex spatial reality and distracting from the violence that was undertaken to undo its plurality. Cartography served as an aid to this process and a decoy to represent ad hoc solutions as based on highly sophisticated scientific and technological expertise.
+</div>
+       
+             </div></div>
+
+    </div>
+
+
+    <div class="notes-column-2">
+      <div class="footnote">
+      </div>
+    </div></div>
+    </section>
+    
+  
 
   <script src="https://unpkg.com/scrollama"></script>
-  <script>
-    const captions = {
-      1: "Ethnic Map of BiH (Markotić et al., 1991). Image credits: Bosniak Institute - Adil Zulfikarpašić.",
-      2: "Ethnical majority map produced in 1996 by the International Management Group. Image credits: Bosniak Institute - Adil Zulfikarpašić.",
-      3: "Screenshot taken from the WPSU‘s Geospatial Revolution series, Episode 3, on the use of Powerscene technology during the Dayton peace agreement talks. Used with permission.",
-      4: "BiH territorial division, image by VisLab.",
-      5: "Map 5 — optional caption or leave blank."
-    };
-
-     const scroller = scrollama();
-
-  scroller
-    .setup({
-      step: ".step",
-      offset: 0.5
-    })
-    .onStepEnter(response => {
-      const step = response.element.getAttribute("data-step");
-
-      document.querySelectorAll('.figure-container').forEach(container => {
-        const containerStep = container.getAttribute("data-step");
-        const isActive = step === containerStep;
-        container.style.opacity = isActive ? 1 : 0;
-        if (isActive) {
-          const captionEl = container.querySelector('.caption');
-          captionEl.textContent = captions[step] || "";
-        }
-      });
-
-      if (step === "0") {
-        document.querySelectorAll('.figure-container').forEach(c => c.style.opacity = 0);
-      }
-
-  
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
