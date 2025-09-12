@@ -30,11 +30,16 @@
 /* =========================
    2. Base styles
    ========================= */
-html, body {
-  max-width: 1360px;
-  margin: 0;
+body {
+
+  border-style: dashed;
+  border-width: 1px;
+  border-color: #003300;
   overscroll-behavior-y: auto;
   font-family: 'ClearSans', sans-serif;
+  margin: 0;
+  padding-left: 80px;
+  padding-top: 100px;    
 }
 
 a:visited {
@@ -54,22 +59,25 @@ sup {
    3. Header
    ========================= */
 .main-header {
+  width: 100%;
   position: fixed;
   top: 0; left: 0; right: 0;
   background: white;
   z-index: 1000;
-  padding: 30px 40px 10px;
   font-family: 'Geologica', sans-serif;
   font-weight: 400;
+  padding: 10px 80px 10px;
+
+
 }
 
 .top-nav {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
+
 }
 
 .top-nav a:hover {
@@ -77,89 +85,130 @@ sup {
 }
 
 .page-title {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-size: 24px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 22px;
   font-weight: 600;
   color: black;
+
 }
+
 
 /* =========================
    4. Chapter navigation
    ========================= */
-.chapter-link { color: rgb(211, 211, 211); }
-.chapter-link.active { color: #0066ff; }
+.chapter-link {
+  color: rgb(68, 61, 61);
+  transition: color .25s ease;
+}
+.chapter-link.active { color: var(--roman-blue); }
+.chapter-link.clicked { color: rgb(68, 61, 61); }
 
 .chapter-wrapper {
+  z-index: 10;
   scroll-snap-align: start;
-  height: auto;
 }
 
 /* =========================
    5. Layout columns
    ========================= */
 .container {
-  display: flex;
-  flex-direction: row;
-  position: relative;
+  display: grid;                
+  grid-template-columns: 1.9fr 1.4fr 0.8fr; /* 2:1:1 */
+  gap: 40px;                    
+  width: 1100px;                    
+  position: relative;          
+}
+
+.container-alt {
+  display: grid;                
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 10px;                    
+  width: 1000px;               
+  position: relative;  
+  padding-bottom: 1200px;   
+}
+
+.container-alt-2 {
+  display: grid;                
+  grid-template-columns: 1fr 0.01fr 1fr;
+  gap: 10px;                    
+  width: 1000px;               
+  position: relative;  
+  padding-bottom: 1200px;   
+}
+
+
+.container-text-figure-image {
+  width: 50%;    
+  right: 0px;                    
+  position: absolute;  
+  object-fit: cover;  
+  z-index: -1;       
+}
+
+
+.content-column-intro {
 }
 
 .visual-column,
 .visual-column-2 {
   position: sticky;
-  top: 180px;
-  height: 80vh;
-}
+  height: 700px;
 
-.visual-column { flex: 2; }
-.visual-column-2 { flex: 3; }
+  padding-bottom: 1000px;
+  top: 120px;
+
+}
 
 .content-column,
 .content-column-2 {
   font-size: 16px;
-  flex: 1.5;
-  padding-top: 180px;
-  padding-left: 30px;
   overflow: visible;
   height: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
 }
-.content-column::-webkit-scrollbar,
-.content-column-2::-webkit-scrollbar { display: none; }
 
 .notes-column,
 .notes-column-2 {
+  top: 120px;
   position: sticky;
-  top: 180px;
-  height: 80vh;
+  padding-bottom: 1000px;
+  height: 700px;
   font-size: 10px;
   line-height: 1.4;
   overflow-y: auto;
   font-family: 'ClearSans', sans-serif;
+
 }
-.notes-column { flex: 1; padding: 0 50px 0 40px; }
-.notes-column-2 { flex: 0; padding: 0 50px 0 40px; }
+
 
 /* =========================
    6. Scroll steps
    ========================= */
 .step {
-  margin-bottom: 500px;
+  height: 1500px;
   line-height: 1.5;
+
 }
 
 .step.last-step {
   position: sticky;
-  top: 180px;
+  height: 700px;
   z-index: 2;
-  background: white;
-  margin-bottom: 220px;
+  padding-bottom: 1000px;
 }
 
 /* =========================
    7. Figures and captions
    ========================= */
+
+
+:root {
+  --roman-blue: rgb(73, 73, 246); 
+}
+
+.roman { color: var(--roman-blue); }
+
 .image-stack {
   position: relative;
   width: 100%;
@@ -182,34 +231,173 @@ sup {
 .figure-container[data-step="0"] { opacity: 1; }
 
 .figure-container img.figure {
-  max-width: 90%;
+  max-width: 100%;
   max-height: 80%;
   object-fit: contain;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+.figure-container img.figure-intro {
+  max-width: 100%;
+
+  object-fit: contain;
+}
+
 .caption {
   margin-top: 5px;
-  padding: 10px 15px;
-  font-size: 14px;
+  padding: 1px 15px;
+  font-size: 10px;
   font-style: italic;
-  max-width: 90%;
+  max-width: 100%;
   color: #444;
   text-align: left;
 }
 
 #clickable-bh-chapter1 {
-  max-height: 85%!important;
-  max-width: 85%!important;
+   top: 0;
 }
 
 /* =========================
    8. Fullscreen images
    ========================= */
-.full-screen-image { z-index: 5; max-width: 100%; }
-#full-img { max-height: 100%; max-width: 100%; padding-bottom: 200px; }
+.full-screen-image { 
+  z-index: 10; 
+  min-height: 1000px;
+  margin-left: -80px;
+}
+
+
+#full-img { 
+  max-height: 100%; 
+  max-width: 100%; 
+  padding-bottom: 200px; 
+}
 
 /* =========================
    9. Special spacing
    ========================= */
-#chapter-intro { padding-bottom: 400px; }
+
+
+#chapter-1-start {
+  height: 1200px;  
+}
+
+
+#map-title {
+  font-family: 'Geologica', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  padding-bottom: 10px;
+  color: rgba(255, 105, 105, 1.0); 
+}
+
+div.container#svg {
+  display: grid;                
+  grid-template-columns: 2.0fr 1.4fr 0.4fr;;
+  gap: 40px;                    
+  width: 1000px;            
+  position: relative;   
+}
+
+
+#svg .visual-column {
+
+}
+
+
+
+.area {
+  cursor: pointer;             
+  transition: fill 0.2s ease, stroke 0.2s ease;
+}
+
+.area:hover {
+  fill: rgba(255, 200, 66, 0.6); 
+  stroke: #000;                   
+  stroke-width: 2px;
+}
+
+
+#map-text {
+  font-size: 16px;
+  line-height: 21px;}
+
+.cls-1{fill-rule:evenodd;}
+.cls-1,.cls-2,.cls-3{opacity:.4;stroke-miterlimit:10;stroke-width:6px;}
+.cls-1,.cls-3{fill:#fdb72b;stroke:#6112ab;}
+.cls-2{fill:#349c00;stroke:#173200;}
+.cls-4{isolation:isolate;}
+
+    #svg svg path,
+#svg svg circle {
+  cursor: pointer;
+  transition: fill 0.2s, stroke 0.2s;
+  pointer-events: all;
+}
+
+#svg path.active,
+#svg circle.active {
+  fill: red !important;     
+  stroke: darkred !important;
+  stroke-width: 6px;
+}
+
+#svg svg path:hover,
+#svg svg circle:hover {
+  fill: rgba(255, 200, 66, 0.6);
+  stroke: #000;
+  stroke-width: 6px;
+}
+
+#svg image {
+  pointer-events: none; /* фон не мешает */
+}
+
+#svg path,
+#svg circle {
+  pointer-events: visiblePainted !important; /* заставляем брать клики по заливке */
+  cursor: pointer;
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+
+#layer path:hover {
+  fill: rgba(0, 255, 0, 0.6);     /* ярко-зелёный на hover */
+  stroke: #003300;                /* чуть темнее обводка */
+}
+
+#map { position: absolute; top: 0; bottom: 0; height: 700px; width: 100%; }
+
+#menu {
+  background: #fff;
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  left: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'ClearSans', sans-serif;
+  overflow-y: auto;
+  max-height: 50%;
+  width: 200px;
+  display: flex;   
+  flex-direction: column;    
+  gap: 3px; 
+  flex-wrap: wrap;     
+}
+
+#menu label {
+  font-size: 14px;
+  color: #404040;
+
+  margin: 0;
+  line-height: 10px;
+}
+
+#menu input {
+  margin-right: 10px;
+}
+
+#footnote-mapbox {
+  font-size: 10px;
+}
