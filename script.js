@@ -9,7 +9,7 @@ const allowedLayers = [
 
 const map = new mapboxgl.Map({
   container: 'map', 
-  style: 'mapbox://styles/iaroslav-boretskii-zois/cmffshokc000901qr2z6f6vgm', // твой стиль
+  style: 'mapbox://styles/iaroslav-boretskii-zois/cmffshokc000901qr2z6f6vgm', 
   center: [17.66, 43.64],
   zoom: 6.4
 });
@@ -17,7 +17,6 @@ const map = new mapboxgl.Map({
 map.on('load', () => {
   const layers = map.getStyle().layers;
 
-  // список нужных слоёв вручную
   const allowedLayers = [
     'Country Borders',
     'Potential Protected Areas',
@@ -26,15 +25,15 @@ map.on('load', () => {
     'Rivers'
   ];
 
-  // фильтруем только те, что в списке allowedLayers
+
   const userLayers = layers.filter(layer => allowedLayers.includes(layer.id));
 
-  // создаём контейнер меню прямо внутри карты
+
   const menu = document.createElement('div');
   menu.id = 'menu';
   map.getContainer().appendChild(menu);
 
-  // добавляем только разрешённые слои
+
   userLayers.forEach(layer => addLayerToMenu(layer, menu));
 });
 
@@ -46,7 +45,7 @@ function addLayerToMenu(layer, menu) {
   checkbox.type = 'checkbox';
   checkbox.id = layer.id;
 
-  // проверяем начальную видимость
+
   const visibility = map.getLayoutProperty(layer.id, 'visibility');
   checkbox.checked = visibility !== 'none';
 
@@ -90,7 +89,48 @@ function addLayerToMenu(layer, menu) {
       10: "14 Holbrooke, Richard. 1998. To End a War. Random House Publishing Group."  
     };
 
-     const scroller = scrollama();
+
+
+function safeFlyTo(options) {
+  if (!map) return;
+  if (!map.loaded()) {
+    map.once('idle', () => map.flyTo(options));
+  } else {
+    map.flyTo(options);
+  }
+}
+
+   const stepActions = {
+  "6": ()  => {
+    safeFlyTo({
+      center: [17.66, 43.64],
+      zoom: 6.4,
+      speed: 2.6,
+      curve: 1.2,
+      essential: true
+    });
+  },
+  "7": () => {
+    safeFlyTo({
+      center: [17.44700882048129, 44.40013884214935],
+      zoom: 12.5,
+      speed: 1.2,
+      curve: 1.2,
+      essential: true
+    });
+  },
+  "8": () => {
+    safeFlyTo({
+      center: [18.337649, 43.815554],
+      zoom: 12.5,
+      speed: 1.2,
+      curve: 1.2,
+      essential: true
+    });
+  }
+};
+
+const scroller = scrollama();
 
 
   
@@ -103,26 +143,36 @@ scroller
   .setup({ step: ".step", offset: getPixelOffset(550) })
   .onStepEnter(response => {
     const step = response.element.getAttribute("data-step");
-    const container = response.element.closest('.container');
+    console.log("ENTER STEP:", step, response.element);
+   let container = response.element.closest('.container');
+if (!container) container = document; 
 
-    // картинки/карта должны обновляться всегда
-    container.querySelectorAll('.figure-container').forEach(fc => {
-      const isActive = fc.getAttribute('data-step') === step;
-      fc.style.opacity = isActive ? 1 : 0;
-      if (isActive) {
-        const captionEl = fc.querySelector('.caption');
-        if (captionEl) captionEl.textContent = captions[step] || '';
-      }
-    });
+container.querySelectorAll('.figure-container').forEach(fc => {
+  const isActive = fc.getAttribute('data-step') === step;
+  fc.style.opacity = isActive ? 1 : 0;
+  if (isActive) {
+    const captionEl = fc.querySelector('.caption');
+    if (captionEl) captionEl.textContent = captions[step] || '';
+  }
+});
 
-    // футноты — особый случай
+ 
     if (step === "5" && manualFootnote) {
-      // если был клик по карте — не трогаем footnote
+
       return;
     }
 
     const footnoteEl = container.querySelector('.notes-column .footnote');
     if (footnoteEl) footnoteEl.innerHTML = footnotes[step] || '';
+
+      if (stepActions[step]) {
+      stepActions[step]();
+    }
+
+    // ...после footnotes и прочего
+hideHoverNoteOnOtherSteps(step);
+
+
   });
 
 
@@ -149,7 +199,7 @@ function updateActiveChapter() {
       pageTitleEl.textContent = newTitle;
     }
 
-    // подсветка в меню
+
     navLinks.forEach(link => {
       link.classList.toggle('active', link.dataset.chapter === current.dataset.chapter);
     });
@@ -203,11 +253,11 @@ const ids = ["ozren", "clark", "pocket", "egg", "croissant"];
   const titleBox = document.getElementById("map-title");
   const textBox = document.getElementById("map-paragraph");
   
-  // ⚡ Берём футноут именно из блока chapter-1
+
   const chapter = document.querySelector('#chapter-1');
   const footnoteBox = chapter.querySelector(".notes-column .footnote");
 
-  // дефолтные тексты
+
   const defaultTitle = titleBox.innerHTML;
   const defaultText = textBox.innerHTML;
   const defaultFootnote = footnoteBox.innerHTML;
@@ -219,7 +269,7 @@ const ids = ["ozren", "clark", "pocket", "egg", "croissant"];
         manualFootnote = true;
 
         if (el.classList.contains("active")) {
-          // сброс
+
           el.classList.remove("active");
           titleBox.innerHTML = defaultTitle;
           textBox.innerHTML = defaultText;
@@ -228,13 +278,13 @@ const ids = ["ozren", "clark", "pocket", "egg", "croissant"];
           return;
         }
 
-        // снять active у других
+
         ids.forEach(otherId => {
           const otherEl = document.getElementById(otherId);
           if (otherEl) otherEl.classList.remove("active");
         });
 
-        // активировать выбранный
+
         el.classList.add("active");
         titleBox.innerHTML = areaContents[id].title;
         textBox.innerHTML = areaContents[id].text;

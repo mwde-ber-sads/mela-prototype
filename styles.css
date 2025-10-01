@@ -350,20 +350,20 @@ div.container#svg {
 }
 
 #svg image {
-  pointer-events: none; /* фон не мешает */
+  pointer-events: none; 
 }
 
 #svg path,
 #svg circle {
-  pointer-events: visiblePainted !important; /* заставляем брать клики по заливке */
+  pointer-events: visiblePainted !important; 
   cursor: pointer;
   transition: fill 0.2s, stroke 0.2s;
 }
 
 
 #layer path:hover {
-  fill: rgba(0, 255, 0, 0.6);     /* ярко-зелёный на hover */
-  stroke: #003300;                /* чуть темнее обводка */
+  fill: rgba(0, 255, 0, 0.6);  
+  stroke: #003300;               
 }
 
 #map { position: absolute; top: 0; bottom: 0; height: 700px; width: 100%; }
@@ -398,6 +398,29 @@ div.container#svg {
   margin-right: 10px;
 }
 
-#footnote-mapbox {
-  font-size: 10px;
+.hover-trigger {
+  background: #fdc600;       
+  position: relative;         
+  cursor: help;
+}
+
+.hover-trigger::after {
+  content: attr(data-tooltip); 
+  position: absolute;
+  left: 0;
+  top: 120%;           
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px 10px;
+  width: 400px;
+  font-size: 0.9em;
+  line-height: 1.4;
+  color: #333;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  display: none;            
+  z-index: 100;
+}
+
+.hover-trigger:hover::after {
+  display: block;           
 }
