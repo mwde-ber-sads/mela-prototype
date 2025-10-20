@@ -1,18 +1,14 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaWFyb3NsYXYtYm9yZXRza2lpLXpvaXMiLCJhIjoiY2xoZzhpMzY5MHpnNTNlbzQ1cGdqbXd2NCJ9.JhdXZ2bLRLDTlAndKmkZng'; // замени на свой
 
-const allowedLayers = [
-  'IEBL Line',
-  'Country Borders',
-  'Emerald Network - Potential Protected Areas',
-  'Woods'
-];
 
 const map = new mapboxgl.Map({
   container: 'map', 
   style: 'mapbox://styles/iaroslav-boretskii-zois/cmffshokc000901qr2z6f6vgm', 
-  center: [17.66, 43.64],
-  zoom: 6.4
+  center: [17.66, 43.84],
+  zoom: 6.9
 });
+
+map.scrollZoom.disable();
 
 map.on('load', () => {
   const layers = map.getStyle().layers;
@@ -102,28 +98,41 @@ function safeFlyTo(options) {
 
    const stepActions = {
   "6": ()  => {
+
+    map.setLayoutProperty('IEBL Lin', 'visibility', 'visible');
+    map.setLayoutProperty('IEBL Line Thin', 'visibility', 'visible');
+
     safeFlyTo({
-      center: [17.66, 43.64],
-      zoom: 6.4,
+      center: [17.66, 43.84],
+      zoom: 6.9,
       speed: 2.6,
       curve: 1.2,
       essential: true
+      
     });
   },
   "7": () => {
+
+    map.setLayoutProperty('IEBL Lin', 'visibility', 'visible');
+    map.setLayoutProperty('IEBL Line Thin', 'visibility', 'visible');
+
     safeFlyTo({
       center: [17.44700882048129, 44.40013884214935],
       zoom: 12.5,
-      speed: 1.2,
+      speed: 0.8,
       curve: 1.2,
       essential: true
     });
   },
   "8": () => {
+
+    map.setLayoutProperty('IEBL Lin', 'visibility', 'none');
+    map.setLayoutProperty('IEBL Line Thin', 'visibility', 'visible');
+
     safeFlyTo({
-      center: [18.337649, 43.815554],
-      zoom: 12.5,
-      speed: 1.2,
+      center: [18.347649, 43.815554],
+      zoom: 13.5,
+      speed: 0.8,
       curve: 1.2,
       essential: true
     });
